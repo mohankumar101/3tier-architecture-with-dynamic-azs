@@ -1,7 +1,7 @@
 resource "aws_lb_listener" "apptier_lb_listener" {
   load_balancer_arn = aws_lb.apptier-lb.arn
   port              = "8443"
-  protocol          = "TCP"
+  protocol          = "HTTP"
 
   default_action {
     type             = "forward"
