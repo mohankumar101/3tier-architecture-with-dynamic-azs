@@ -3,7 +3,7 @@ resource "aws_lb" "apptier-lb" {
     internal           = true
     load_balancer_type = "application"
     security_groups    = [aws_security_group.apptier-alb-security-group.id]
-    subnets            = [  for subnet in aws_subnet.apptier_private_subnets : subnet.cidr_block ]
+    subnets            = [  for subnet in aws_subnet.apptier_private_subnets : subnet.id ]
 #    enable_deletion_protection = true
 
     tags = {
