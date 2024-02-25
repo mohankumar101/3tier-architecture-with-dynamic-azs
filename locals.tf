@@ -1,8 +1,8 @@
 
 locals {
     public_subnets_3rdoctet  = 1
-    web_subnets_3rdoctet = 5
-    app_subnets_3rdoctet = 9
+    web_subnets_3rdoctet = 11
+    app_subnets_3rdoctet = 22
 }
 
 locals {
@@ -14,6 +14,9 @@ locals {
     apptier_ec2_ami = data.aws_ami.apptier-ec2-amidata
 }
 
+output "local_az" {
+    value = local.availability_zones
+}
 
 locals {
     web_subnets = [

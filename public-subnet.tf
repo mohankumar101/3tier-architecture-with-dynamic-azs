@@ -1,6 +1,7 @@
 
 
 /* Public subnet */
+
 resource "aws_subnet" "public_subnets" {
   count                   = length(local.public_subnets)
     vpc_id                  = aws_vpc.lv_webinfra.id

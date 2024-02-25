@@ -15,7 +15,7 @@ resource "aws_launch_template" "apptier_launch_template" {
 
   network_interfaces {
     associate_public_ip_address = false
-    security_groups = [ aws_security_group.allow_webtier_traffic_sg.id ]
+    security_groups = [ aws_security_group.allow_apptier_traffic_sg.id ]
   }
 
   tag_specifications {

@@ -1,11 +1,12 @@
-/* Apptier subnet */
+/* Apptier - private subnet */
+
 resource "aws_subnet" "apptier_private_subnets" {
   count                   = length(local.app_subnets)
     vpc_id                  = aws_vpc.lv_webinfra.id
     cidr_block              = local.app_subnets[count.index]
     availability_zone       = local.availability_zones[count.index]
     tags = {
-        Name        = "${var.vpc_environment}-${local.availability_zones[count.index]}-app-subnet"
+        Name        = "${var.vpc_environment}-${local.availability_zones[count.index]}-apptier-subnet"
         Environment = "${var.vpc_environment}"
     }
 }

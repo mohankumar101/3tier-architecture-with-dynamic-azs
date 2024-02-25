@@ -72,3 +72,22 @@ variable "lv_3tier_vpc" {
         cidr = "10.0.0.0/16"
     }
 }
+
+variable "webtier_ingress_ports" {
+    description = "Webtier incoming connection ports"
+    type = map(number)
+    default = {
+        ssh     = 22
+        http    = 80
+        https   = 443
+    }
+}
+
+variable "apptier_ingress_ports" {
+    description = "Webtier incoming connection ports"
+    type = map(number)
+    default = {
+        ssh     = 22
+        app     = 8443
+    }
+}

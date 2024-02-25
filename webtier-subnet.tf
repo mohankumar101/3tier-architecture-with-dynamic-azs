@@ -1,11 +1,12 @@
-/* Private subnet */
+/* Apptier - private subnet */
+
 resource "aws_subnet" "webtier_private_subnets" {
   count                 = length(local.web_subnets)
     vpc_id                  = aws_vpc.lv_webinfra.id
     cidr_block              = local.web_subnets[count.index]
     availability_zone       = local.availability_zones[count.index]
     tags = {
-        Name        = "${var.vpc_environment}-${local.availability_zones[count.index]}-web-subnet"
+        Name        = "${var.vpc_environment}-${local.availability_zones[count.index]}-webtier-subnet"
         Environment = "${var.vpc_environment}"
     }
 }
@@ -25,7 +26,7 @@ resource "aws_route_table_association" "webtier_rta" {
 }
 
 ### Route for reaching internet from private subnets
-resource "aws_route" "private_subnet_internet_route" {
+resource "aws_route" "webtier_subnet_internet_route" {
   destination_cidr_block = "0.0.0.0/0"
   route_table_id = aws_route_table.webtier-routing-table.id
   gateway_id = aws_nat_gateway.lv_shop_nat.id

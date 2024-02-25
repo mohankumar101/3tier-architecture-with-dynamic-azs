@@ -14,7 +14,7 @@ resource "aws_launch_template" "webtier_launch_template" {
   }
   network_interfaces {
     associate_public_ip_address = false
-    security_groups = [ aws_security_group.allow_internet_web_traffic_sg.id ]
+    security_groups = [ aws_security_group.allow_ec2_web_traffic_sg.id ]
   }
   user_data = filebase64("user-data.sh")
   tag_specifications {

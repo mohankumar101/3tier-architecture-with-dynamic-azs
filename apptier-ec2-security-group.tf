@@ -1,14 +1,22 @@
-resource "aws_security_group" "allow_webtier_traffic_sg" {
+resource "aws_security_group" "allow_apptier_traffic_sg" {
   name        = "allow_apptraffic"
   description = "Allow app inbound traffic and all outbound traffic"
   vpc_id      = aws_vpc.lv_webinfra.id
 
   ingress {
     description = "App traffic from Webtier"
-    from_port   = 8443
-    to_port     = 8443
+    from_port   = var.apptier_ingress_ports.app
+    to_port     = var.apptier_ingress_ports.app
     protocol    = "tcp"
     cidr_blocks = [ for subnet in aws_subnet.webtier_private_subnets: subnet.cidr_block ] 
+  }
+
+  ingress {
+    description = "SSH traffic from Bastion"
+    from_port   = var.apptier_ingress_ports.ssh
+    to_port     = var.apptier_ingress_ports.ssh
+    protocol    = "tcp"
+    cidr_blocks = [ for subnet in aws_subnet.public_subnets: subnet.cidr_block ] 
   }
 
   egress {
