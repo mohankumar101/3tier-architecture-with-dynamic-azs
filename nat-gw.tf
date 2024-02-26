@@ -6,7 +6,3 @@ resource "aws_nat_gateway" "lv_shop_nat" {
     }
   depends_on = [aws_eip.lv_shop_nat_eip]
 }
-
-output "nat_gateway" {
-    value = aws_nat_gateway.lv_shop_nat.public_ip
-}

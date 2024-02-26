@@ -1,5 +1,5 @@
 resource "aws_security_group" "webtier-alb-security-group" {
-  name        = "webtier_alb_security_group"
+  name        = "webtier_alb_traffic_sg"
   description = "Webtier alb security group"
   vpc_id      = aws_vpc.lv_webinfra.id
 
@@ -11,12 +11,15 @@ resource "aws_security_group" "webtier-alb-security-group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  egress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    security_groups = [aws_security_group.allow_ec2_web_traffic_sg.id]
+/*
+  ingress {
+    description = "HTTP from Internet"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
+*/
 
   egress {
     from_port   = 0

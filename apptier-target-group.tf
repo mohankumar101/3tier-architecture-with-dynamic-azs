@@ -1,3 +1,5 @@
+# Load Balancer target group (the backend pool in traditional load balancing systems)
+
 resource "aws_lb_target_group" "apptier_tg" {
   name          = "apptier-tg"
   port          = 8443

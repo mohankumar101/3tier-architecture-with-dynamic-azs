@@ -6,6 +6,3 @@ resource "aws_internet_gateway" "lv_internet_gw" {
   }
 }
 
-output "internet_gateway_id" {
-    value = aws_internet_gateway.lv_internet_gw.id
-}

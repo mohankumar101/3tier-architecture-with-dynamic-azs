@@ -91,3 +91,10 @@ variable "apptier_ingress_ports" {
         app     = 8443
     }
 }
+
+variable "ssh_key_name" {
+    description = "SSH keys to login with"
+    type = string
+    default = "avmk-newkeys"
+}
+

@@ -1,5 +1,5 @@
-resource "aws_launch_template" "webtier_launch_template" {
 
+resource "aws_launch_template" "webtier_launch_template" {
   name                      = "webtier_launch_template"
   disable_api_stop          = true
   disable_api_termination   = true
@@ -7,7 +7,7 @@ resource "aws_launch_template" "webtier_launch_template" {
   image_id                  = local.webtier_ec2_ami.id
   instance_initiated_shutdown_behavior = "terminate"
   instance_type             = "t3.micro"
-  key_name                  = "avmk-newkeys"
+  key_name                  = var.ssh_key_name
   
   monitoring {
     enabled = true
@@ -20,7 +20,7 @@ resource "aws_launch_template" "webtier_launch_template" {
   tag_specifications {
     resource_type = "instance"
     tags = {
-        name        = "Legitvector-shop-${var.vpc_environment}-webtier-launch-template"
+        name        = "frontend-ec2"
         environment = var.vpc_environment
         tier        = "webtier"
     }

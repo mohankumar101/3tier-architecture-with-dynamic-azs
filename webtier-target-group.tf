@@ -1,3 +1,5 @@
+# Webtier Load Balancer target group (the backend pool in traditional load balancing systems)
+
 resource "aws_lb_target_group" "webtier_tg" {
   name          = "webtier-tg"
   port          = 80

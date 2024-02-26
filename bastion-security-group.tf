@@ -1,3 +1,5 @@
+# Bastion host security group, accepts only port 22 traffic 
+
 resource "aws_security_group" "bastion_allow_ssh_sg" {
   name        = "allow_ssh"
   description = "Allow SSH inbound traffic and all outbound traffic"
@@ -7,6 +9,8 @@ resource "aws_security_group" "bastion_allow_ssh_sg" {
     Name = "Legitvector-shop-Bastion-host-allowssh-security-group"
   }
 }
+
+# Refine the below ingress rule after testing - to your onprem network IP range to reduce attack vector
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   security_group_id = aws_security_group.bastion_allow_ssh_sg.id

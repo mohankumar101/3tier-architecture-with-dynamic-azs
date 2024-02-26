@@ -1,3 +1,7 @@
+# Apptier load balancer, notice its placed on private subnet 
+# This doesn't need to be public so "internal = true" 
+
+
 resource "aws_lb" "apptier-lb" {
     name               = "apptier-lb"
     internal           = true
@@ -11,6 +15,8 @@ resource "aws_lb" "apptier-lb" {
     }
 }
 
+# Listener to route traffic to target group - Virtual/Backend pool in traditional load balancer understanding
+
 resource "aws_lb_listener" "apptier_lb_listener" {
   load_balancer_arn = aws_lb.apptier-lb.arn
   port              = "8443"
@@ -20,8 +26,4 @@ resource "aws_lb_listener" "apptier_lb_listener" {
     type             = "forward"
     target_group_arn = aws_lb_target_group.apptier_tg.arn
   }
-}
-
-output "app_lb_listener" {
-  value = aws_lb_listener.apptier_lb_listener
 }
